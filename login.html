@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <div class="container auth-page__container">
+      <section class="card auth-card">
+        <div class="card__body">
+          <h1>Login</h1>
+          <p class="auth-card__subtitle">Sign in to access your dashboard.</p>
+
+          <div id="loginAlert" class="alert alert--hidden"></div>
+
+          <form id="loginForm" class="form" novalidate>
+            <div class="form-group">
+              <label for="loginEmail" class="form-label">Email</label>
+              <input
+                type="email"
+                id="loginEmail"
+                name="email"
+                class="form-control"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="loginPassword" class="form-label">Password</label>
+              <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                class="form-control"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full-width">
+              Login
+            </button>
+          </form>
+
+          <p class="auth-card__footer">
+            Don't have an account?
+            <a href="register.html">Register</a>
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

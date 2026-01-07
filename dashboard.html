@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container app-header__content">
+      <div class="app-header__brand">
+        <h1>Dashboard</h1>
+        <p id="userGreeting" class="app-header__subtitle"></p>
+      </div>
+      <div class="app-header__actions">
+        <button id="logoutBtn" class="btn btn--outline">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="container dashboard__container">
+      <section class="dashboard__summary card">
+        <div class="card__body dashboard__summary-grid">
+          <div class="summary__item">
+            <span class="summary__label">Total Expenses</span>
+            <span id="summaryTotal" class="summary__value">₹0.00</span>
+          </div>
+          <div class="summary__item">
+            <span class="summary__label">This Month</span>
+            <span id="summaryThisMonth" class="summary__value">₹0.00</span>
+          </div>
+          <div class="summary__item">
+            <span class="summary__label">Entries</span>
+            <span id="summaryCount" class="summary__value">0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard__content">
+        <div class="dashboard__left">
+          <section class="card">
+            <div class="card__body">
+              <h2>Add / Edit Expense</h2>
+              <div id="expenseFormAlert" class="alert alert--hidden"></div>
+              <form id="expenseForm" class="form" novalidate>
+                <input type="hidden" id="expenseId" />
+
+                <div class="form-group">
+                  <label for="expenseTitle" class="form-label">Title</label>
+                  <input
+                    type="text"
+                    id="expenseTitle"
+                    class="form-control"
+                    placeholder="e.g. Grocery Shopping"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="expenseAmount" class="form-label">Amount</label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    id="expenseAmount"
+                    class="form-control"
+                    placeholder="e.g. 1200"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="expenseCategory" class="form-label">Category</label>
+                  <select id="expenseCategory" class="form-control" required>
+                    <option value="">Select category</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="expenseDate" class="form-label">Date</label>
+                  <input
+                    type="date"
+                    id="expenseDate"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="expenseDescription" class="form-label">
+                    Description (optional)
+                  </label>
+                  <textarea
+                    id="expenseDescription"
+                    class="form-control"
+                    rows="3"
+                    placeholder="Add additional details..."
+                  ></textarea>
+                </div>
+
+                <div class="form__actions">
+                  <button type="submit" class="btn btn--primary">
+                    <span id="expenseFormSubmitLabel">Add Expense</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="expenseFormResetBtn"
+                    class="btn btn--secondary"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+
+        <div class="dashboard__right">
+          <section class="card">
+            <div class="card__body">
+              <div class="dashboard__list-header">
+                <h2>Expenses</h2>
+                <div class="dashboard__filters">
+                  <input
+                    type="text"
+                    id="filterText"
+                    class="form-control form-control--sm"
+                    placeholder="Search title or description"
+                  />
+                  <select
+                    id="filterCategory"
+                    class="form-control form-control--sm"
+                  >
+                    <option value="">All categories</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <select id="filterSort" class="form-control form-control--sm">
+                    <option value="date_desc">Newest</option>
+                    <option value="date_asc">Oldest</option>
+                    <option value="amount_desc">Amount ↓</option>
+                    <option value="amount_asc">Amount ↑</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="expensesEmptyState" class="empty-state">
+                <p>No expenses yet. Add your first one using the form on the left.</p>
+              </div>
+
+              <table id="expensesTable" class="table table--hidden">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th class="table__cell--right">Amount (₹)</th>
+                    <th class="table__cell--actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="expensesTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/expenses.js"></script>
+</body>
+</html>
